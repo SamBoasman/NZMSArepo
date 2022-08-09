@@ -5,7 +5,10 @@ import { Root, Root2 } from "./tsTypes/CountryTypes";
 
 import axios from "axios";
 
-import logo from "./logo.svg";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import { Paper, TextField } from "@mui/material";
+
 import "./App.css";
 
 function App() {
@@ -18,21 +21,35 @@ function App() {
 
     return (
         <div>
-            <h1>Country Search</h1>
-
-            <div>
-                <label>Country Name</label>
-                <br />
-                <input
-                    type="text"
-                    id="country-name"
-                    name="country-name"
-                    onChange={(e) => setCountryName(e.target.value)}
-                />
-                <br />
-                <button onClick={search}>Search</button>
+            <div className="search-field">
+                <h1 className="App-header">Country Search</h1>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <TextField
+                        id="search-bar"
+                        className="text"
+                        value={countryName}
+                        onChange={(prop: any) => {
+                            setCountryName(prop.target.value);
+                        }}
+                        label="Enter a country name"
+                        variant="outlined"
+                        placeholder="Search..."
+                        size="small"
+                        style={{
+                            backgroundColor: "white",
+                            borderRadius: "5px",
+                        }}
+                    />
+                    <IconButton
+                        aria-label="search"
+                        onClick={() => {
+                            search();
+                        }}
+                    >
+                        <SearchIcon style={{ fill: "black" }} />
+                    </IconButton>
+                </div>
             </div>
-
             <p>You have entered {countryName}</p>
 
             {countryInfo === undefined ? (
