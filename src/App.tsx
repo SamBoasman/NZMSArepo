@@ -50,15 +50,39 @@ function App() {
                     </IconButton>
                 </div>
             </div>
-            <p>You have entered {countryName}</p>
-
-            {countryInfo === undefined ? (
-                <p>Country not found</p>
-            ) : (
-                <div id="Country-flag">
-                    <img src={countryInfo.flags.png} />
+            <div className="search-result">
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    {countryInfo === undefined || countryInfo === null ? (
+                        <p>No such country found</p>
+                    ) : (
+                        <Paper
+                            sx={{
+                                backgroundColor: "#EEFFEE",
+                                maxWidth: "800px",
+                                width: "80%",
+                                padding: "20px 20px",
+                            }}
+                        >
+                            <div className="container">
+                                <div className="item">
+                                    {countryInfo?.flags === undefined ? (
+                                        <p>No map found</p>
+                                    ) : (
+                                        <img
+                                            src={countryInfo?.flags.png}
+                                            style={{}}
+                                        />
+                                    )}
+                                    <p>National flag (above)</p>
+                                </div>
+                                <div className="item"></div>
+                                <div className="item"></div>
+                                <div className="item"></div>
+                            </div>
+                        </Paper>
+                    )}
                 </div>
-            )}
+            </div>
         </div>
     );
 
