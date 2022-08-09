@@ -50,6 +50,7 @@ function App() {
                     </IconButton>
                 </div>
             </div>
+
             <div className="search-result">
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     {countryInfo === undefined || countryInfo === null ? (
@@ -75,9 +76,53 @@ function App() {
                                     )}
                                     <p>National flag (above)</p>
                                 </div>
-                                <div className="item"></div>
-                                <div className="item"></div>
-                                <div className="item"></div>
+                                <div className="item">
+                                    <p>
+                                        Common name: {countryInfo.name.common}
+                                        <br />
+                                        Official name:{" "}
+                                        {countryInfo.name.official}.
+                                        <br />
+                                        Capital: {countryInfo.capital}
+                                        <br />
+                                        Region: {countryInfo.region}
+                                        <br />
+                                        Locate:{" "}
+                                        <a href={countryInfo.maps.googleMaps}>
+                                            Google Maps
+                                        </a>
+                                        <br />
+                                    </p>
+                                </div>
+                                <div className="item">
+                                    <p>
+                                        Area: {countryInfo.area} km^2
+                                        <br />
+                                        Population: {countryInfo.population}
+                                        <br />
+                                        Drives on the {countryInfo.car.side}
+                                        <br />
+                                        Start of week:{" "}
+                                        {countryInfo.startOfWeek
+                                            .charAt(0)
+                                            .toUpperCase() +
+                                            countryInfo.startOfWeek.slice(1)}
+                                    </p>
+                                </div>
+                                <div className="item">
+                                    <p>Coat of Arms (below)</p>
+                                    {countryInfo?.coatOfArms === undefined ? (
+                                        <p>No coat of arms found</p>
+                                    ) : (
+                                        <img
+                                            src={countryInfo?.coatOfArms.png}
+                                            style={{
+                                                maxWidth: "300px",
+                                            }}
+                                            alt="Coat of arms failed to render"
+                                        />
+                                    )}
+                                </div>
                             </div>
                         </Paper>
                     )}
@@ -98,7 +143,7 @@ function App() {
                           console.log("Country not found");
                           setCountryInfo(undefined);
                       })
-                : console.log("Can't search null");
+                : console.log("can't search null");
         }
     }
 }
